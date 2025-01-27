@@ -1,5 +1,4 @@
-# Run Backend detached
-cd ./backend
-npm run dev
+#!/bin/sh
 
-# Run Frontend
+# Run application as dev
+npm run dev

@@ -33,18 +33,8 @@ else
   echo "./backend/.env file already exists, skipping creation"
 fi
 
-# Install npm packages in Backend
-cd backend
+# Install npm packages
 npm install && echo "Installing backend npm dependencies"
-cd ..
 
-# Install npm packages in Frontend
-#cd frontend
-#npm install && echo "Installing frontend npm dependencies"
-
-
-
-
-# echo "seeding db"
-
-# echo -ne '\n' | dotnet run completeSeed && echo "Seed database"%
+# Seed the database
+#&& echo "seeding db"
