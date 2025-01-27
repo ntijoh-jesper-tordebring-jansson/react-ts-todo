@@ -1,0 +1,30 @@
+{
+  "name": "react-ts-todo",
+  "version": "1.0.0",
+  "description": "Todo applikation built in React (+ Material UI) and TypeScript for frontend, TypeScript (Express) and Node for backend, gRPC for RPC requests and MariaDB as database (but will be migrated over to Postgress later in the project).",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "test": "npm run test --workspace=backend && npm run test --workspace=frontend",
+    "postinstall": "echo 'Post-install script executed.'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntijoh-jesper-tordebring-jansson/react-ts-todo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntijoh-jesper-tordebring-jansson/react-ts-todo/issues"
+  },
+  "homepage": "https://github.com/ntijoh-jesper-tordebring-jansson/react-ts-todo#readme"
+}
