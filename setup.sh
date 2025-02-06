@@ -36,5 +36,8 @@ fi
 # Install npm packages
 npm install && echo "Installing backend npm dependencies"
 
-# Seed the database
-#&& echo "seeding db"
+# Wait 3 seconds
+sleep 3
+
+# Create database and table and seed
+./seed.sh
