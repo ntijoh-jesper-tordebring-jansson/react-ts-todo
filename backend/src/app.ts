@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import todoRoutes from "./routes/todo.routes";
+import { errorHandler, handle404 } from "./utils/error-handler";
 
 const app = express();
 
@@ -28,9 +29,10 @@ app.use(express.urlencoded({ extended: true }));
 // ✅ Routes
 app.use("/api/todos", todoRoutes);
 
-// ✅ Handle 404 errors
-app.use((req, res) => {
-  res.status(404).json({ error: "Route not found" });
-});
+// ❌ Handle 404 errors
+app.use(handle404);
+
+// ❌ Centralized error handling (this will catch all other errors)
+app.use(errorHandler);
 
 export default app;

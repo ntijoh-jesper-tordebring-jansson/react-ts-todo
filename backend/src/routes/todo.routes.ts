@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getAllTodos, createTodo } from "../controllers/todo.controller";
+import { getTodosByUserController, createTodoForUserController } from "../controllers/todo.controller";
 
 const router = Router();
 
 // ✅ Define Routes
-router.get("/", getAllTodos);
-router.post("/", createTodo);
+router.get("/user/:userId", getTodosByUserController);
+router.post("/user/:userId", createTodoForUserController);
 
 export default router;

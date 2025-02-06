@@ -1,28 +1,33 @@
 import pool from "../config/db";
+import { Todo } from "../models/todo.model";
 
-// ✅ Get Todos From Database
-export const getTodosFromDB = async () => {
+// ✅ Get Todos For Specific User From Database
+export const getTodosByUser = async (userId: number): Promise<Todo[]> => {
   try {
     const connection = await pool.getConnection();
-    const rows = await connection.query("SELECT * FROM todos");
+    const todos: Todo[] = await connection.query("SELECT * FROM todos WHERE user_id = ?", [
+      userId
+    ]);
     connection.release();
-    return rows;
-  } catch (error) {
-    throw new Error("Database query failed");
+    return todos;
+  } catch (error : any) {
+    throw new Error("Error fetching todos: " + error.message);
   }
 };
 
-// ✅ Create Todo in Database
-export const createTodoInDB = async (title: string, completed: boolean) => {
+// ✅ Create Todo For Specific User In Database
+export const createTodoForUser = async (title: string, description: string, user_id: number) => {
   try {
     const connection = await pool.getConnection();
-    const result = await connection.query("INSERT INTO todos (title, completed) VALUES (?, ?)", [
+    const result = await connection.query("INSERT INTO todos (title, description, user_id) VALUES (?, ?, ?)", [
       title,
-      completed,
+      description,
+      user_id,
     ]);
     connection.release();
-    return { id: result.insertId, title, completed };
+    return { result };
   } catch (error) {
     throw new Error("Failed to insert todo");
+    
   }
 };
